@@ -22,6 +22,6 @@ public class DictionaryController {
     public String convert(@RequestParam String english, Model model) {
         String vietnamese = dictionaryService.convert(english);
         model.addAttribute("vietnamese", vietnamese);
-        return "vietnamese";
+        return "dictionary";
     }
 }
