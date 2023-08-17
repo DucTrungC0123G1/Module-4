@@ -17,6 +17,7 @@
         <th>Producer</th>
         <th>Detail</th>
         <th>Edit</th>
+        <th>Delete</th>
     </tr>
     <tr th:each="product,status :${product}">
         <td th:text="${status.count}"></td>
@@ -26,7 +27,8 @@
         <td th:text="${product.description}"></td>
         <td th:text="${product.producer}"></td>
         <td><a th:href="@{product/detail(id=${product.id})}">Detail</a></td>
-        <td><a href="#">Edit</a></td>
+        <td><a th:href="@{product/edit(id=${product.id})}">Edit</a></td>
+        <td><a th:href="@{product/delete(id=${product.id})}">Delete</a></td>
     </tr>
 </table>
 </body>

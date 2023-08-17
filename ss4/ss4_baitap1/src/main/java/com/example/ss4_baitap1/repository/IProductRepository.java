@@ -11,4 +11,8 @@ public interface IProductRepository {
     Product findById(int id);
 
     void save(Product product);
+
+    void remove(int id);
+
+    void update(int id, Product product);
 }

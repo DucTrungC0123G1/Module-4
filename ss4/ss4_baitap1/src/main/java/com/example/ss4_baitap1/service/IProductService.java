@@ -10,4 +10,8 @@ public interface IProductService {
     Product findById(int id);
 
     void save(Product product);
+
+    void remove(int id);
+
+    void update(int id, Product product);
 }

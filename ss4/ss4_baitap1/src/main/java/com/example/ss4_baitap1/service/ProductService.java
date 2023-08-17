@@ -27,4 +27,14 @@ public class ProductService implements IProductService{
         productRepository.save(product);
     }
 
+    @Override
+    public void remove(int id) {
+        productRepository.remove(id);
+    }
+
+    @Override
+    public void update(int id, Product product) {
+        productRepository.update(id,product);
+    }
+
 }

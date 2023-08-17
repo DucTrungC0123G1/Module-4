@@ -15,27 +15,57 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private IProductService productService;
+
     @GetMapping("")
-    public String display(Model model){
+    public String display(Model model) {
         List<Product> productList = productService.display();
-        model.addAttribute("product",productList);
+        model.addAttribute("product", productList);
         return "/list";
     }
+
     @GetMapping("/detail")
-    public String detail(@RequestParam int id, Model model){
+    public String detail(@RequestParam int id, Model model) {
         Product product = productService.findById(id);
-        model.addAttribute("product",product);
+        model.addAttribute("product", product);
         return "detail";
     }
+
     @GetMapping("/create")
-    public String viewCreate(Model model){
-        model.addAttribute("products",new Product());
+    public String viewCreate(Model model) {
+        model.addAttribute("products", new Product());
         return "create";
     }
+
     @PostMapping("/createProduct")
-    public String save( Product products, RedirectAttributes redirectAttributes){
-        redirectAttributes.addFlashAttribute("mess","Add Product Success");
+    public String save(Product products, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("mess", "Add Product Success");
         productService.save(products);
+        return "redirect:/product";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam int id, Model model) {
+        Product product = productService.findById(id);
+        model.addAttribute("product", product);
+        return "/delete";
+    }
+
+    @PostMapping("/deleteProduct")
+    public String deleteProduct(Product product, RedirectAttributes redirectAttributes) {
+        productService.remove(product.getId());
+        redirectAttributes.addFlashAttribute("messDelete", "Delete Success");
+        return "redirect:/product";
+    }
+    @GetMapping("edit")
+    public String edit(@RequestParam int id, Model model){
+        Product product = productService.findById(id);
+        model.addAttribute("product",product);
+        return "edit";
+    }
+    @PostMapping("editProduct")
+    public String update(Product product, RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("messEdit","Edit Success");
+        productService.update(product.getId(),product);
         return "redirect:/product";
     }
 }
