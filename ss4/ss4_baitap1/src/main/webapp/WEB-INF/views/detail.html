@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<fieldset style="display: inline">
+  <legend>Product Information</legend>
+    Name:
+    <p th:text="${product.name}"></p> <br>
+    Price:
+    <p th:text="${product.price}"></p> <br>
+    Description:
+    <p th:text="${product.description}"></p> <br>
+    Producer:
+    <p th:text="${product.producer}"></p>
+</fieldset>
+</body>
+</html>
