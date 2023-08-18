@@ -39,7 +39,7 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public Product findByName(String keyWord) {
+    public List<Product> findByName(String keyWord) {
         return productRepository.search(keyWord);
     }
 

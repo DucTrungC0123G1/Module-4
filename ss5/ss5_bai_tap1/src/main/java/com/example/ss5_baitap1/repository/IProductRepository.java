@@ -18,5 +18,5 @@ public interface IProductRepository {
     void update(int id, Product product);
 
 
-    Product search(String keyWord);
+    List<Product> search(String keyWord);
 }

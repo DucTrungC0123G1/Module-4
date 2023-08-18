@@ -58,14 +58,11 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public Product search(String keyWord) {
-        List<Product> productList;
-//        for (Product product : productList) {
-//            if (Objects.equals(keyWord, product.getName())) {
-//                return product;
-//            }
-//        }
-        return null;
+    public List<Product> search(String keyWord) {
+        keyWord = "%"+keyWord+"%";
+        TypedQuery<Product> typedQuery = entityManager.createQuery("select s from Product s where s.name like: keyWord", Product.class);
+              typedQuery.setParameter("keyWord",keyWord);
+        return typedQuery.getResultList();
     }
 
 

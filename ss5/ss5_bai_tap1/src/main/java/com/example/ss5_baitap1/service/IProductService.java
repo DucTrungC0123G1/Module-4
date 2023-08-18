@@ -17,5 +17,5 @@ public interface IProductService {
     void update(int id, Product product);
 
 
-    Product findByName(String keyWord);
+    List<Product> findByName(String keyWord);
 }

@@ -69,11 +69,11 @@ public class ProductController {
         productService.update(product.getId(),product);
         return "redirect:/product";
     }
-    @PostMapping
+    @PostMapping("search")
     public String search(@RequestParam String keyWord,Model model){
-        Product product = productService.findByName(keyWord);
-        model.addAttribute("product",product);
-        return "/detail";
+        List<Product> productList = productService.findByName(keyWord);
+        model.addAttribute("product",productList);
+        return "/search";
     }
 
 }
