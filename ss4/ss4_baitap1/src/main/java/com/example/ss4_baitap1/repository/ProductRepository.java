@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Repository
 public class ProductRepository implements IProductRepository{
@@ -44,5 +46,16 @@ public class ProductRepository implements IProductRepository{
     public void update(int id, Product product) {
         productList.add(id,product);
     }
+
+    @Override
+    public Product search(String keyWord) {
+        for (Product product: productList){
+            if (Objects.equals(keyWord,product.getName())){
+                return product;
+            }
+        }
+        return null;
+    }
+
 
 }

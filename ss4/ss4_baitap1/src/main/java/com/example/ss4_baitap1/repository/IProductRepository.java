@@ -3,6 +3,7 @@ package com.example.ss4_baitap1.repository;
 import com.example.ss4_baitap1.model.Product;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IProductRepository {
     List<Product> display();
@@ -15,4 +16,7 @@ public interface IProductRepository {
     void remove(int id);
 
     void update(int id, Product product);
+
+
+    Product search(String keyWord);
 }

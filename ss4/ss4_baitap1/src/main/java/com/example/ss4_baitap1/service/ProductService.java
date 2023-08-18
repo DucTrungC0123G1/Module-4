@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductService implements IProductService{
@@ -36,5 +37,11 @@ public class ProductService implements IProductService{
     public void update(int id, Product product) {
         productRepository.update(id,product);
     }
+
+    @Override
+    public Product findByName(String keyWord) {
+        return productRepository.search(keyWord);
+    }
+
 
 }

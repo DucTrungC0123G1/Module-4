@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -60,7 +61,7 @@ public class ProductController {
     public String edit(@RequestParam int id, Model model){
         Product product = productService.findById(id);
         model.addAttribute("product",product);
-        return "edit";
+        return "/edit";
     }
     @PostMapping("editProduct")
     public String update(Product product, RedirectAttributes redirectAttributes){
@@ -68,4 +69,11 @@ public class ProductController {
         productService.update(product.getId(),product);
         return "redirect:/product";
     }
+    @PostMapping
+    public String search(@RequestParam String keyWord,Model model){
+        Product product = productService.findByName(keyWord);
+        model.addAttribute("product",product);
+        return "/detail";
+    }
+
 }

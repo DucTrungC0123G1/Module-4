@@ -7,6 +7,13 @@
 <body>
 <a th:href="@{/product/create}">Add New Product</a>
 <p th:text="${mess}"></p>
+<p th:text="${messDelete}"></p>
+<p th:text="${messEdit}"></p>
+<form action="/product/search" method="post">
+    <input type="text" name="keyWord" placeholder="input search">
+    <button type="submit">Search</button>
+
+</form>
 <table border="1">
     <tr>
         <th>STT</th>
