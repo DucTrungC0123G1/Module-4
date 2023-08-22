@@ -1,6 +1,6 @@
 package com.example.ss5_baitap1.service;
 
-import com.example.ss5_baitap1.model.Product;
+
 import com.example.ss5_baitap1.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,6 @@ public class ProductService implements IProductService{
     private IProductRepository productRepository;
     @Override
     public List<Product> display() {
-
         return productRepository.display();
     }
 

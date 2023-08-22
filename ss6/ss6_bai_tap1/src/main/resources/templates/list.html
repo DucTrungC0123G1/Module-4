@@ -14,6 +14,9 @@
         <th>Blog Author</th>
         <th>Blog Content</th>
         <th>Type Blog</th>
+        <th>Detail</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     <tr th:each="b:${blogList}">
         <td th:text="${b.nameBlog}"></td>
@@ -21,6 +24,9 @@
         <td th:text="${b.author}"></td>
         <td th:text="${b.content}"></td>
         <td th:text="${b.typeBlog.nameTypeBlog}"></td>
+        <td><a href="#">Detail</a></td>
+        <td><a href="#">Edit</a></td>
+        <td><a href="#">Delete</a></td>
     </tr>
 
 </table>

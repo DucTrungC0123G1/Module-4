@@ -24,4 +24,10 @@ public class BlogController {
         model.addAttribute("blogList", blogList);
         return "/list";
     }
+    @GetMapping
+    public String showView(@RequestParam int id, Model model){
+        Blog blogView = blogService.blog(id);
+        model.addAttribute("blogView",blogView);
+        return "/view";
+    }
 }
