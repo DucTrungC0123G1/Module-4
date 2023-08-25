@@ -8,4 +8,6 @@ public interface IBookService {
     List<Book> findAll();
 
     Book findByIdBook(int id);
+
+    void addBook(Book book);
 }
