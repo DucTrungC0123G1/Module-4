@@ -24,7 +24,7 @@ public class Logger {
         Book book =bookService.findByIdBook((int) ags[0]);
         System.out.println("khách đã mượn 1 cuốn sách tên :" +book.getName());
     }
-    @Before("execution(* com.example.ss9_borrow_book.controller.BookController.giveBook())")
+    @After("execution(* com.example.ss9_borrow_book.controller.BookController.giveBook())")
     public void giveBook(JoinPoint joinPoint){
         Object[] ags =joinPoint.getArgs();
         BookCode bookCode = bookCodeService.findByCode((int) ags[0]);
