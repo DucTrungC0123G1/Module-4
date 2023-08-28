@@ -1,6 +1,6 @@
 package com.example.createblogapplication.controller;
 
-
+import com.example.createblogapplication.model.Blog;
 import com.example.createblogapplication.model.Category;
 import com.example.createblogapplication.service.IBlogService;
 import com.example.createblogapplication.service.ICategoryService;
@@ -27,25 +27,14 @@ public class BlogController {
     @Autowired
     private ICategoryService categoryService;
 
-//    @GetMapping("/list")
-//    public String showDisplay(@RequestParam(defaultValue = "0") int page,
-//                              @RequestParam(defaultValue = "") String searchName,Model model) {
-//        Pageable pageable = PageRequest.of(page,2, Sort.by("date").ascending());
-//        Page<Blog> blogPage = blogService.findAll(pageable,searchName);
-//        model.addAttribute("searchName",searchName);
-//        model.addAttribute("blogPage",blogPage);
-//        return "/list";
-//    }
-@GetMapping("/list")
-public ModelAndView showPage(@RequestParam(defaultValue = "0",required = false) int page,
-                             @RequestParam(defaultValue = "",required = false)String searchName
-) {
-    Pageable pageable = PageRequest.of(page, 2, Sort.by("name").descending());
-    Page<Blog> blogPage = blogService.searchByName(pageable, searchName);
-    ModelAndView modelAndView = new ModelAndView("list", "blogPage", blogPage);
-    modelAndView.addObject("searchName", searchName);
-    return modelAndView;
-}
+    @GetMapping("/list")
+    public String showDisplay(Model model,@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "") String searchName) {
+        Pageable pageable = PageRequest.of(page,2, Sort.by("date").ascending());
+        Page<Blog> blogPage = blogService.findAll(pageable,searchName);
+        model.addAttribute("searchName",searchName);
+        model.addAttribute("blogPage",blogPage);
+        return "/list";
+    }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) {
@@ -87,8 +76,9 @@ public ModelAndView showPage(@RequestParam(defaultValue = "0",required = false) 
     @RequestMapping("/detail/{id}")
     public String showDetail(@PathVariable int id,Model model){
         Blog blog = blogService.findById(id);
+        System.out.println(blog);
         model.addAttribute("blog",blog);
-        return "detail";
+        return "/detail";
     }
 
 }
