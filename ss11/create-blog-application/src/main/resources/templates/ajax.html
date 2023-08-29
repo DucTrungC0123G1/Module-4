@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="code.jquery.com_jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<input type="text" placeholder="search" id="name">
+<button id="btn" onclick="search()">Search</button>
+<table border="1">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Blog</th>
+        <th>Tác Giả</th>
+        <th>Nội Dung</th>
+        <th>Thể Loại</th>
+    </tr>
+    </thead>
+    <tbody id="content">
+    </tbody>
+</table>
+<script>
+    display();
+
+    function display() {
+        let content = "";
+        $.ajax({
+            contentType: "application/json",
+            method: "Get",
+            dataType: "json",
+            url: "http://localhost:8080/api/blogs",
+            success: function (data) {
+                console.log(data.content)
+                if (data.content.length > 0) {
+                    for (let i = 0; i < data.content.length; i++) {
+                        content += `<tr>
+                                <td>${i + 1}</td>
+                                <td>${data.content[i].author}</td>
+                                <td>${data.content[i].name}</td>
+                                <td>${data.content[i].content}</td>
+                                <td>${data.content[i].category.name}</td>
+                                </tr>`
+                    }
+                }
+                $("#content").html(content);
+            }
+        })
+    }
+
+    function search() {
+        let searchName = "";
+        let name = $('#name').val();
+        $.ajax({
+            contentType: "application/json",
+            method: "Get",
+            dataType: "json",
+            url:"http://localhost:8080/api/searchByName?name="+name,
+            success:function (data){
+                console.log(data.content)
+                for (let i = 0; i < data.content.length; i++) {
+                    searchName+=`<tr>
+                                <td>${i+1}</td>
+                                <td>${data.content[i].author}</td>
+                                <td>${data.content[i].name}</td>
+                                <td>${data.content[i].content}</td>
+                                <td>${data.content[i].category.name}</td>
+                                </tr>`
+                }
+                $("#content").html(searchName);
+            }
+        })
+    }
+</script>
+</body>
+</html>

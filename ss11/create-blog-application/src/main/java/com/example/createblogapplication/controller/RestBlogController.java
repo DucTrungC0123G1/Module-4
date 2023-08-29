@@ -65,6 +65,12 @@ public class RestBlogController {
         blogService.delete(blog);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/api/searchByName")
+    public ResponseEntity<List<Blog>> getBlogByName(@RequestParam String name){
+        List<Blog> blogList = blogService.findByNameBlog(name);
+        return new ResponseEntity<>(blogList,HttpStatus.OK);
+    }
 //    @PutMapping("/edit/{id}")
 //    public ResponseEntity<Blog> update(@PathVariable int id,@RequestBody Blog blog){
 //        Blog blog1 = blogService.findById(id);

@@ -17,4 +17,6 @@ public interface IBlogService {
     Blog findById(int id);
 
     void edit(Blog blog);
+
+    List<Blog> findByNameBlog(String name);
 }

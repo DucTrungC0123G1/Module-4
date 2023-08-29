@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -40,5 +41,16 @@ public class BlogService implements IBlogService{
     @Override
     public void edit(Blog blog) {
         BlogRepository.save(blog);
+    }
+
+    @Override
+    public List<Blog> findByNameBlog(String name) {
+        List<Blog> blogList = findALl();
+        List<Blog> blogs = new ArrayList<>();
+        for (Blog b: blogList) {
+            if(b.getName().contains(name)){
+                blogs.add(b);
+            }
+        }return blogs;
     }
 }

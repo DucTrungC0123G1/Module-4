@@ -34,5 +34,4 @@ public class RestCategoryController {
         }
         return new ResponseEntity<>(blogList,HttpStatus.OK);
     }
-
 }
